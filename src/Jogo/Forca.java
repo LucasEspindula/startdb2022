@@ -1,5 +1,7 @@
 package Jogo;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Forca {
@@ -11,7 +13,7 @@ public class Forca {
 
 	static int vidas = 6;
 	static String letra;
-	static String letrasChutadas = "";
+	static List<String> letrasChutadas = new ArrayList<String>();
 
 	static Scanner in = new Scanner(System.in);
 	static char[] letrasAcertadas = new char[palavra.length()];
@@ -34,10 +36,12 @@ public class Forca {
 		for (int i = 0; i < palavra.length(); i++) {
 			System.out.print(" __ ");
 		}
+		System.out.println("\n\n Dica: Rei das Frutas");
 	}
 
 	public static void buscarDadosDoJogo() {
-		System.out.println("\n" + "\nVoce tem " + vidas + " vidas restantes" + "\nLetras chutadas: " + letrasChutadas
+		System.out.println("\n\nVoce tem " + vidas + " vidas restantes" 
+				+ "\nLetras chutadas: " + letrasChutadas.toString().toUpperCase()
 				+ "\nAguardando chute:");
 	}
 
@@ -46,15 +50,16 @@ public class Forca {
 		letra = new Scanner(System.in).next().toLowerCase();
 
 		if (letra.matches("[a-z]")) {
-			letrasChutadas += " " + letra;
+			letrasChutadas.add(letra);
 		}
 
-//		for (int i = 0; i < letrasChutadas.length(); i++) {
-//			if (letra != letrasChutadas.contains(letra)) {
-//				System.out.println("ssss");
+//		if (letrasChutadas.isEmpty() == false) {
+//			for (int i = 0; i < letrasChutadas.size(); i++) {
+//				if (letrasChutadas.toString().equals(letra.to)) {
+//					System.out.println(">>>>>>>>>>>");
+//				}
 //			}
 //		}
-
 	}
 
 	public static void controleDeAcerto() {
@@ -66,7 +71,7 @@ public class Forca {
 			if (palavra.charAt(i) == letra.charAt(0)) {
 				letrasAcertadas[i] = 1;
 				perdeVida = false;
-			}	
+			}
 		}
 		
 		if (!letra.matches(".?") || letra.matches("[0-9]")) {
